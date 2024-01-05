@@ -1,0 +1,530 @@
+@import "_resetbs";
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "https://unpkg.com/swiper@8/swiper-bundle.min.css";
+@import "https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap";
+
+body{
+    overflow-x: hidden;
+    font-family: 'Raleway', sans-serif;
+}
+
+.input-group-text{
+    cursor: pointer;
+}
+
+.offcanvas-header .btn-close{
+  fill:$light;
+}
+.btn-close.closeCrossnav::before, .btn-close.closeCrossnav::after{
+ color: $light !important;
+}
+
+#menuDesktop{
+  .navbar-toggler {
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    outline: none;
+  
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+  
+    .navbar-toggler-icon {
+        position: relative;
+        background-image: none;
+        width: 18px; // Largeur du bouton
+        height: 12px; // Hauteur du bouton
+  
+        &::before,
+        &::after,
+        span {
+            display: block;
+            position: absolute;
+            content: '';
+            background-color: $danger; // Couleur des barres
+            height: 2px; // Hauteur des barres
+            width: 100%; // Largeur des barres
+            transition: all 0.3s ease-in-out;
+        }
+  
+        &::before {
+            top: 0; // Position de la barre du haut
+        }
+  
+        span {
+            top: 50%;
+            transform: translateY(-50%); // Centrer la barre du milieu
+            opacity: 1;
+        }
+  
+        &::after {
+            bottom: 0; // Position de la barre du bas
+        }
+    }
+  
+    &.active {
+        .navbar-toggler-icon {
+            &::before {
+                top: 50%;
+                transform: translateY(-50%) rotate(45deg); // Place et tourne la barre du haut
+            }
+  
+            span {
+                opacity: 0; // Rendre la barre du milieu invisible
+            }
+  
+            &::after {
+                bottom: 50%;
+                transform: translateY(50%) rotate(-45deg); // Place et tourne la barre du bas
+            }
+        }
+    }
+  }
+
+  #nav_lc_hm {
+    position: absolute;
+    width: 200px; /* ou la largeur que vous souhaitez */
+    top: 100%; /* Positionnez juste en dessous de votre barre de navigation */
+    right: 0;
+    z-index: 1000; /* Assurez-vous qu'il est au-dessus des autres éléments */
+
+    .nav-link{
+      padding:5px 0;
+      text-align: right;
+    }
+  }
+
+}
+
+
+#navbar {
+    width: 100%;
+    display: block;
+    transition: top 0.3s;
+    z-index: 3;
+    background-color: rgba($color: #000000, $alpha: .8);
+    backdrop-filter: blur(10px);
+
+    .navbar-brand{
+        font-family: 'Crimson Text', serif;
+    }
+}
+
+.nav-scroller {
+    position: relative;
+    z-index: 1;
+    height: 2.75rem;
+    overflow-y: hidden;
+
+    .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+.siteTitle{
+    font-weight: 600;
+    span{
+        font-family: 'Crimson Text', serif;
+        font-weight: 600;
+        color: $danger;
+    }
+}
+.imgLegend { 
+    transform: rotate(-90deg);
+    transform-origin: center top;
+    white-space: nowrap;
+    position:absolute;
+    bottom:55px;
+    left:-155px;
+    
+}
+// Mouse & Message Styles
+
+
+// mouse scroll down animation
+@keyframes scroll-ani {
+    0% {
+      opacity: 1;
+      top: 29%;
+      height: 0px;
+    }
+    15% {
+      opacity: 1;
+      top: 50%;
+      height: 10px;
+    }
+    50% {
+      opacity: 0;
+      top: 50%;
+    }
+    100% {
+      opacity: 0;
+      top: 29%;
+    }
+  }
+
+// The Scroll Link
+.mouse-scroll {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: normal;
+    color: $black;
+    margin-top: 8px;
+    text-decoration: none;
+    overflow: hidden;
+    
+    // The Mouse
+    .mouse {
+      position: relative;
+      display: block;
+      width: 34px;
+      height: 52px;
+      margin: 0 auto 8px;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      border: 2px solid $black;
+      border-radius: 17px;
+      
+      // Scroll Indicator
+      .mouse-movement { 
+        position: absolute;
+        display: block;
+        top: 29%;
+        left: 50%;
+        width: 3px;
+        margin: -4px 0 0 -1px;
+        background: $black;
+        border-radius: 50%;
+        -webkit-animation: scroll-ani 1.5s linear infinite;
+        -moz-animation: scroll-ani 1.5s linear infinite;
+        animation: scroll-ani 1.5s linear infinite;
+      }
+      
+    }
+  }
+  
+  .coverImg{
+    height:30vh;
+    background-position: bottom;
+  }
+@media (min-width: 768px) {
+  .coverImg{
+    height:85vh; 
+    background-size: cover; 
+    background-position: center;
+  }    
+}
+
+.progress-container {
+    width: 100%;
+    height: 4px;
+    background: $secondary;
+    overflow-x: hidden;
+}
+.progress-bar {
+    height: 4px;
+    background: $info;
+    width: 0%;
+}
+
+.swiper-slide {min-width:350px}
+/* only on sm to large devices */
+@media (min-width: 768px) {
+    .swiper-slide {min-width:350px}
+}
+
+#legcookie{
+    position: fixed;
+    bottom: 100px;
+    left:20px;
+    width:90%;
+    background: $white;
+    z-index: 99;
+    color:$dark;
+    button{
+        font-weight: bolder;
+    }
+}
+@media (min-width:768px) {
+    #legcookie{
+        width:400px;
+        bottom: 30px;
+    }
+}
+
+.newsletter {
+    position: fixed;
+    bottom: 160px;
+    right:-550px;
+    width: 500px;
+    height: 280px;
+    background: $white;
+    box-shadow: 0 0 10px rgba(138, 155, 165, 0.15);
+    border-radius: 10px;
+    z-index: 2;
+    transition: right 0.3s;
+}
+.newsletter.active {
+    right:50px;
+    transition: right 0.3s;
+}
+
+@media (max-width:576px) {
+    .newsletter{
+        display:none;
+    }
+}
+
+.content{
+
+    .socialNav{
+    top:100px;
+    left:0px;
+    margin-top: 50px;
+  
+      a{
+        display: block;
+        width:40px;
+        height:40px;
+        text-align: center;
+        line-height: 2.3em;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+
+        i{
+            position: relative;
+            top: -3px;
+        }
+
+        
+      }
+    }
+  }
+
+  #pageEdition{
+    position: fixed;
+    top : 200px;
+  
+    li{
+      list-style-type: none;
+      margin-left:-40px;
+      width:40px;
+      height:40px;
+      a{
+        display: block;
+        text-align: center;
+        line-height: 2.3em;
+        font-size: 1.2em;
+        color:$light;
+      }
+    }
+    li:first-child{
+      border-radius: 0 10px 0 0;
+    }
+    li:last-child{
+      border-radius: 0 0 10px 0;
+    }
+  
+  }
+
+span.surlign1{font-weight: 700;background-color: yellow;}
+span.surlign2{font-weight: 700;background-color: yellow;}
+span.surlign3{font-weight: 700;}
+span.surlign4{font-weight: 700;}
+
+p[data-f-id='pbf'] {
+    display: none;
+}
+.pdfPrez:hover{
+background-color: lighten($secondary, 50%);
+}
+.pdfPrez{
+position:relative;
+.pdfpicto{
+    position:absolute;
+    top:20px;
+    right: 25px;
+}
+}
+
+.error404 {
+    height: calc(100vh - 45px);
+    overflow: hidden;
+    background-image: url(../img/404/404-background.png);
+    background-position: top 100px center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #dae0e5;
+}
+
+@media (min-width:768px){
+  .swiper {
+    position: relative;
+    height: 500px;
+  }
+}
+.swiper {
+  height: 450px;
+}
+.swiper-pagination {
+  position: absolute;
+  left: 10px; /* Alignement à gauche */
+  bottom:0px !important;
+  padding: 20px 0;
+  width: calc(100% - 20px); /* Largeur ajustée pour laisser de la place aux flèches */
+}
+
+.swiper-button-prev, .swiper-button-next {
+  position: absolute;
+  top: auto; /* Désactive l'alignement vertical */
+  bottom: 10px; /* Aligné avec la pagination */
+  z-index: 10;
+}
+.swiper-button-prev i, .swiper-button-next i {
+font-size: 25px;
+padding-left: 15px !important;
+padding-right: 15px !important;
+
+}
+
+.swiper-button-prev::after, .swiper-button-next::after {
+  display: none;
+}
+
+.swiper-button-prev {
+  left: calc(50% - 125px); /* Ajustez cette valeur pour placer la flèche près de la pagination */
+}
+
+.swiper-button-next {
+  left: calc(50% + 95px); /* Ajustez cette valeur pour placer la flèche près de la pagination */
+}
+
+.swiper-pagination-bullet {
+  margin-right: 0; /* Marge droite initiale */
+  border-radius: 5px; /* Rayon de bordure pour le rendre rond */
+  transition: width 0.4s ease-in-out, margin-left 0.4s ease-in-out; /* Transition pour la largeur et la marge droite */
+}
+
+.swiper-pagination-bullet-active {
+  width: 20px; /* Largeur étendue pour le point actif */
+  margin-right: 10px; /* Augmenter la marge droite pour déplacer le point vers la gauche */
+background-color: $red;
+}
+
+.image-container {
+  width: 100%; /* Largeur fixe pour toutes les images */
+  height: 380px; /* Hauteur fixe pour toutes les images */
+  overflow: hidden; /* Cache les parties de l'image qui débordent */
+  position: relative;
+}
+
+.image-container img {
+  width: 100%; /* Étend l'image pour remplir la largeur du conteneur */
+  height: 100%; /* Étend l'image pour remplir la hauteur du conteneur */
+  object-fit: cover; /* S'assure que l'image couvre toute la zone, sans déformation */
+  object-position: center; /* Centre l'image dans le conteneur */
+  transition: transform 0.3s ease;
+}
+
+.image-container::after {
+  content: ''; /* Nécessaire pour créer un pseudo-élément */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0); /* Couleur noire avec 50% de transparence */
+  transition: background 0.3s ease;
+  z-index: 1; /* S'assure que l'overlay est au-dessus de l'image */
+}
+
+.image-container:hover::after {
+  background: rgba(0, 0, 0, 0.5); /* Noir avec transparence au survol */
+}
+
+.image-container:hover img {
+  transform: scale(1.05); /* Un léger zoom pour un effet visuel supplémentaire */
+}
+
+/* Style des onglets */
+.nav-link {
+  background: none;
+  border: none;
+  padding:15px 0;
+  text-align: left;
+  color:$secondary;
+  cursor: pointer;
+}
+
+.nav-pills .nav-link.active,.nav-pills .nav-link:hover{
+  background-color: rgba($color: #000000, $alpha: 0);
+  border: none;
+  text-align: left;
+  color:$dark;
+  font-weight: bold;
+}
+
+
+// card-hover dans les chantiers
+.card-hover {
+  height: 380px; /* Hauteur fixe pour toutes les images */
+  overflow: hidden; /* Cache les parties de l'image qui débordent */
+  position: relative;
+}
+
+.card-hover img {
+  width: 100%; /* Étend l'image pour remplir la largeur du conteneur */
+  height: 100%; /* Étend l'image pour remplir la hauteur du conteneur */
+  object-fit: cover; /* S'assure que l'image couvre toute la zone, sans déformation */
+  object-position: center; /* Centre l'image dans le conteneur */
+  transition: transform 0.3s ease;
+}
+
+.card-hover::after {
+  content: ''; /* Nécessaire pour créer un pseudo-élément */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .4); /* Couleur noire avec 50% de transparence */
+  transition: background 0.3s ease;
+  z-index: 1; /* S'assure que l'overlay est au-dessus de l'image */
+}
+
+.card-hover:hover::after {
+  background: rgba(159, 54, 63, .9); /* Noir avec transparence au survol */
+}
+
+.card-text{
+  position: absolute;
+  top: -200px;
+  left: 20px;
+  z-index: 2;
+  color: $light;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  transition: top 0.3s ease-in-out;
+}
+
+.card-hover:hover .card-text{
+  top: 40px;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  transition: top 0.3s ease-in-out;
+}
+
+.card-hover:hover img {
+  transform: scale(1.2); /* Un léger zoom pour un effet visuel supplémentaire */
+}
