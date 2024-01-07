@@ -1,4 +1,4 @@
-# Ignore config files
+# Ignore specific file
 .env
 
 # Ignore Composer dependencies
