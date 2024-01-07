@@ -56,9 +56,158 @@ $user = $_ENV['DB_USER'];
 $password = $_ENV['DB_PASSWORD'];
 $database = $_ENV['DB_NAME'];
 
-// Se connecter à la base de données, etc.
 
 ```
+#### la base de données
+```
++------------------------+          +------------------------+          +------------------------+
+|        actions         |          |          blog          |          |        category        |
++------------------------+          +------------------------+          +------------------------+
+| id                     |<-------->| id                     |          | cat_id                 |
+| from_site              |          | from_site              |          | from_site              |
+| action                 |          | title                  |          | cat_name               |
+| dateAction             |          | url                    |          | cat_date               |
++------------------------+          | description            |          +------------------------+
+                                   | eventStart              |
+                                   | eventEnd                |
+                                   | embededFiles            |
+                                   | authors                |
+                                   | photo                  |
+                                   | blogDate                |
+                                   | creator                |
+                                   +------------------------+
+
++------------------------+          +------------------------+          +------------------------+
+|       chatbox          |          |          docs          |          |      entreprises      |
++------------------------+          +------------------------+          +------------------------+
+| id                     |<-------->| id                     |          | id                     |
+| author                 |          | name                   |          | from_site              |
+| texte                  |          | toolDesc               |          | entreprise             |
+| date                   |          | toolProd               |          | gouvernance            |
+| doc_id                 |          | toolType               |          | adresse                |
++------------------------+          | toolTarget             |          | cp                     |
+                                   | toolLink               |          | ville                  |
+                                   | imgBase64              |          | num_TVA                |
+                                   | folderType             |          | dateDebut              |
+                                   | fileDate               |          +------------------------+
+                                   | fileDoc                |
+                                   | typeDoc                |
+                                   | sizeDoc                |
+                                   | date                   |
+                                   | fileUpdate             |
+                                   | created_by             |
+                                   | active                 |
+                                   | parent_id              |
+                                   | item_order             |
+                                   +------------------------+
+
++------------------------+          +------------------------+          +------------------------+
+|        events          |          |        keywords        |          |      newsletter       |
++------------------------+          +------------------------+          +------------------------+
+| id                     |          | key_id                 |          | id                     |
+| eventDate              |          | from_site              |          | from_site              |
+| eventTexte             |          | key_name               |          | news_prenom            |
+| from_site              |          | key_date               |          | news_nom               |
+| eventTime              |          +------------------------+          | news_mail              |
+| eventTimeEnd           |                                              | news_date              |
++------------------------+                                              +------------------------+
+
++------------------------+          +------------------------+          +------------------------+
+|       online           |          |         pages          |          |      page_tools       |
++------------------------+          +------------------------+          +------------------------+
+| visitor_id             |<-------->| page_id                |          | tool_id                |
+| from_site              |          | from_site              |          | from_site              |
+| visitor_ip             |          | page_type              |          | tool_type              |
+| country                |          | page_category          |<-------->| tool_content           |
+| countryCode            |          | titre                  |          | page_id                |
+| city                   |          | page_url               |          | item_order             |
+| latitude               |          | photo                  |<-------->+------------------------+
+| longitude              |          | authors                |
+| pageView               |          | embededFiles           |
+| pageReferer            |          | active                 |
+| time                   |          | page_update            |
+| visitor_date           |          | page_date              |
++------------------------+          +------------------------+
+
++------------------------+          +------------------------+          +------------------------+
+|     participants       |          |   product_rating       |          |     recuperation      |
++------------------------+          +------------------------+          +------------------------+
+| pid                    |          | id                     |          | id                     |
+| from_site              |          | from_site              |          | mail                   |
+| civilite               |          | user_id                |          | code                   |
+| prenom                 |<-------->| product_id             |          | confirme               |
+| nom                    |          | rating                 |          +------------------------+
+| entreprise             |          | rating_date            |
+| adresse                |          +------------------------+
+| cp                     |
+| ville                  |
+| telFix                 |
+| email                  |
+| ordinal                |
+| tva                    |
+| adherent               |
+| participation          |
+| cotisation             |
+| soiree                 |
+| paiement               |
+| date_inscription       |
++------------------------+
+
++------------------------+          +------------------------+          +------------------------+
+|  product_rating        |          |     recuperation       |          |         roles          |
++------------------------+          +------------------------+          +------------------------+
+| id                     |          | id                     |          | id                     |
+| from_site              |          | mail                   |          | name                   |
+| user_id                |          | code                   |          | slug                   |
+| product_id             |          | confirme               |          | level                  |
+| rating                 |          +------------------------+          +------------------------+
+| rating_date            |
++------------------------+
+
++------------------------+          +------------------------+          +------------------------+
+|        roles           |          |         users          |          |         views          |
++------------------------+          +------------------------+          +------------------------+
+| id                     |<-------->| id                     |          | visitor_id             |
+| name                   |          | from_site              |          | from_site              |
+| slug                   |          | prenom                 |<-------->| visitor_ip             |
+| level                  |          | nom                    |          | country                |
++------------------------+          | fonction               |          | countryCode            |
+                                    | role_projet            |          | city                   |
+                                   | mail                   |          | latitude               |
+                                   | password               |          | longitude              |
+                                   | passwordCheck          |          | pageView               |
+                                   | type                   |          | pageReferer            |
+                                   | entreprise             |          | visitor_date           |
+                                   | gouvernance            |          +------------------------+
+                                   | adresse                |
+                                   | cp                     |
+                                   | ville                  |
+                                   | telFix                 |
+                                   | telMob                 |
+                                   | dateDebut              |
+                                   | active                 |
+                                   | role_id               |
+                                   | entreprise_id          |
+                                   +------------------------+
+
++------------------------+          +------------------------+          +------------------------+
+|         views          |          |       visitors         |          |        newsletter       |
++------------------------+          +------------------------+          +------------------------+
+| visitor_id             |<-------->| visitor_id             |          | id                     |
+| from_site              |          | from_site              |          | from_site              |
+| visitor_ip             |          | visitor_ip             |          | news_prenom            |
+| country                |          | country                |          | news_nom               |
+| countryCode            |          | countryCode            |          | news_mail              |
+| city                   |          | city                   |          | news_date              |
+| latitude               |          | latitude               |          +------------------------+
+| longitude              |          | longitude              |
+| pageView               |          | pageView               |
+| pageReferer            |          | pageReferer            |
+| visitor_date           |          | visitor_date           |
++------------------------+          +------------------------+
+
+```
+
 
 ### FAQs
 ***
