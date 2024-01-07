@@ -30,6 +30,7 @@ Attention : la base de données ```n'est pas fournie``` avec le code.
 
 ### Environnement
 ***
+#### Les variables d'environnement
 La connexion à la base de données se fait *via* des variables d'environnement. Ici elles ont été créées grâce à un fichier **.env** et possible avec la commande suivante :
 ```
 composer require vlucas/phpdotenv
