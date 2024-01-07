@@ -1,4 +1,5 @@
 # cgmr
+<img src="https://cgmr.fr/img/ebeniste.png" width="300" alt="Image text">
 
 ## Table des matières :
 1. [General Info](#general-info)
@@ -9,7 +10,7 @@
 ### General Info
 ***
 Ce site est réalisé en PHP / SCSS / JS sans framework spécifique.
-![Image text](https://cgmr.fr/img/ebeniste.png | width=100)
+
 ## Technologies
 ***
 A list of technologies used within the project:
