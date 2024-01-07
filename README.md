@@ -30,11 +30,36 @@ Attention : la base de données ```n'est pas fournie``` avec le code.
 
 ### Environnement
 ***
-Give instructions on how to collaborate with your project.
-> Maybe you want to write a quote in this part. 
-> It should go over several rows?
-> This is how you do it.
-## FAQs
+La connexion à la base de données se fait *via* des variables d'environnement. Ici elles ont été créées grâce à un fichier **.env** et possible avec la commande suivante :
+```
+composer require vlucas/phpdotenv
+```
+et définies de la manière suivante :
+```
+DB_HOST=localhost
+DB_USER=votre_utilisateur
+DB_PASSWORD=votre_mot_de_passe
+DB_NAME=votre_base_de_donnees
+
+```
+et dans le fichier ```config.php``` :
+```
+<?php
+require __DIR__ . '/vendor/autoload.php'; // Charge Composer autoloader
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+// Utilisez les variables d'environnement comme d'habitude
+$host = $_ENV['DB_HOST'];
+$user = $_ENV['DB_USER'];
+$password = $_ENV['DB_PASSWORD'];
+$database = $_ENV['DB_NAME'];
+
+// Se connecter à la base de données, etc.
+
+```
+
+### FAQs
 ***
 A list of frequently asked questions
 1. **This is a question in bold**
