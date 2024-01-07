@@ -5,29 +5,30 @@
 1. [General Info](#general-info)
 2. [Technologies](#technologies)
 3. [Installation](#installation)
-4. [Collaboration](#collaboration)
+4. [Environnement](#environnement)
 5. [FAQs](#faqs)
+
+
 ### General Info
 ***
 Ce site est réalisé en PHP / SCSS / JS sans framework spécifique.
 
-## Technologies
+### Technologies
 ***
 A list of technologies used within the project:
-* [Technologie name](https://example.com): Version 12.3 
-* [Technologie name](https://example.com): Version 2.34
-* [Library name](https://example.com): Version 1234
-## Installation
+* [PHP](https://windows.php.net/download#php-8.1): Version 8.1 
+* [JQUERY](https://jquery.com/): Version 3.6.4
+* [SASS](https://sass-lang.com/): Version 1.69.7
+
+### Installation
 ***
-A little intro about the installation. 
+L'installation se fait très simplement en faisant un clone des fichiers ou en cliquant sur download. 
 ```
-$ git clone https://example.com
-$ cd ../path/to/the/file
-$ npm install
-$ npm start
+$ git clone https://github.com/michaelheilikman/cgmr.git
 ```
-Side information: To use the application in a special environment use ```lorem ipsum``` to start
-## Collaboration
+Attention : la base de données ```n'est pas fournie``` avec le code.
+
+### Environnement
 ***
 Give instructions on how to collaborate with your project.
 > Maybe you want to write a quote in this part. 
