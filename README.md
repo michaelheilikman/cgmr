@@ -8,9 +8,8 @@
 5. [FAQs](#faqs)
 ### General Info
 ***
-Write down the general informations of your project. It is worth to always put a project status in the Readme file. This is where you can add it. 
-### Screenshot
-![Image text](https://cgmr.fr/img/ebeniste.png)
+Ce site est réalisé en PHP / SCSS / JS sans framework spécifique.
+![Image text](https://cgmr.fr/img/ebeniste.png | width=100)
 ## Technologies
 ***
 A list of technologies used within the project:
