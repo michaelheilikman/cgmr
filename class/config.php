@@ -10,6 +10,11 @@ $company = "cgmr";
 $liveURL = "https://cgmr.fr";
 $noCacheFile = strtotime(Date('Y-m-d h:i:s'));
 
+require __DIR__ . '/../vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->load();
+
+
 if($_SERVER['HTTP_HOST'] == "localhost"){
     $host 		= "localhost";
     $login		= "root";
@@ -17,10 +22,10 @@ if($_SERVER['HTTP_HOST'] == "localhost"){
     $bdd		= "cgmr";
     $path       = "http://".$_SERVER['SERVER_NAME']."/".$website."/";
 }else{
-    $host 		= "db5014728913.hosting-data.io";
-	$login		= "dbu1219705"; 
-	$pass 		= "Cgmr@2023+!AbMh";
-    $bdd		= "dbs12237937";
+    $host 		= $_ENV['DB_HOST'];
+	$login		= $_ENV['DB_USER'];
+	$pass 		= $_ENV['DB_PASSWORD'];
+    $bdd		= $_ENV['DB_NAME'];
     global $path;
     $path       = "https://".$_SERVER['SERVER_NAME']."/";
 }

@@ -10,7 +10,9 @@ $page = 'Accueil';
 <?php include 'includes/nav.php' ?>
 <?php include 'includes/hero.php' ?>
 
- 
+<!-- <div class="container">
+ <?= substr(hash('sha256','michaelheilikman.com'),0,15) ?>
+ </div> -->
   
 <div id="apropos" class="container my-5">
 	<div class="row">
