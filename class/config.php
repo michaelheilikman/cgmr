@@ -10,10 +10,6 @@ $company = "cgmr";
 $liveURL = "https://cgmr.fr";
 $noCacheFile = strtotime(Date('Y-m-d h:i:s'));
 
-require __DIR__ . '/../vendor/autoload.php';
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
-$dotenv->load();
-
 
 if($_SERVER['HTTP_HOST'] == "localhost"){
     $host 		= "localhost";
@@ -22,6 +18,10 @@ if($_SERVER['HTTP_HOST'] == "localhost"){
     $bdd		= "cgmr";
     $path       = "http://".$_SERVER['SERVER_NAME']."/".$website."/";
 }else{
+    require __DIR__ . '/../vendor/autoload.php';
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../..');
+    $dotenv->load();
+
     $host 		= $_ENV['DB_HOST'];
 	$login		= $_ENV['DB_USER'];
 	$pass 		= $_ENV['DB_PASSWORD'];
