@@ -6,6 +6,11 @@ RewriteRule ^chantiers$ events.php [L]
 RewriteRule ^contact-me$ contact.php [L]
 RewriteRule ^chantier/([a-zA-Z0-9\-/_]+)$ eventSingle.php?url=$1
 
+<Files .env>
+    Order Allow,Deny
+    Deny from all
+</Files>
+
 # Version locale wamp
 ErrorDocument 404 /cgmr/erreur_404.php
 # ErrorDocument 500 /cgmr/erreur_500.php
