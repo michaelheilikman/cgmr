@@ -17,16 +17,16 @@
   };
 </script>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FCW7D38BG6"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H3RPBDY6KH"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-FCW7D38BG6');
+  gtag('config', 'G-H3RPBDY6KH');
 </script>
 
-<?php if($page != 'projects'): ?>
+<?php if($page != 'projects' && $page != 'recuperation'): ?>
 <script>
 $(function(){
     $("#navbar").css("top", "-150px");
