@@ -29,7 +29,7 @@ if(!empty($_POST['website'])){
         CURLOPT_POSTFIELDS => "{\"attributes\":{\"PRENOM\":\"$news_prenom\",\"NOM\":\"$news_nom\"},\"listIds\":[4],\"updateEnabled\":true,\"email\":\"$news_mail\"}",
         CURLOPT_HTTPHEADER => [
             "accept: application/json",
-            "api-key: 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",
+            "api-key:".$_ENV['BREVO_API_KEY']."",
             "content-type: application/json"
         ],
         ]);
