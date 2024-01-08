@@ -1,5 +1,12 @@
 # Ignore specific file
-.env
+*.env
+
+# Ignore files uploaded from site
+**/uploads/
+**/imgs/
+**/imgs/original/
+**/imgs/social/
+**/imgs/thumb/
 
 # Ignore Composer dependencies
 vendor/
