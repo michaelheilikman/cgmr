@@ -17,7 +17,7 @@ CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 CURLOPT_CUSTOMREQUEST => "GET",
 CURLOPT_HTTPHEADER => [
   "accept: application/json",
-  "api-key: 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"
+  "api-key:".$_ENV['BREVO_API_KEY']."" 
   ],
 ]);
 $response = curl_exec($curl);
