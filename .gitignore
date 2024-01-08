@@ -1,5 +1,6 @@
 # Ignore specific file
 *.env
+*.gitignore
 
 # Ignore files uploaded from site
 **/uploads/
