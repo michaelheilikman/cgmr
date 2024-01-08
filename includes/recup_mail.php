@@ -55,15 +55,15 @@ if(isset($_POST['recup_submit'],$_POST['recup_mail'])) {
                $mail->isSMTP();                                            // Send using SMTP
                $mail->Host       = 'smtp.ionos.fr';                   // Set the SMTP server to send through
                $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-               $mail->Username   = 'no_reply@michaelheilikman.com';                  // SMTP username
-               $mail->Password   = 'Mike@3138142';                               // SMTP password
+               $mail->Username   = 'no_reply@cgmr.fr';                  // SMTP username
+               $mail->Password   = $_ENV['MDP_NOREPLY'];                               // SMTP password
                //$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
                $mail->SMTPSecure = 'tls';
                $mail->CharSet = 'UTF-8';
                $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
            
                //Recipients
-               $mail->setFrom('no_reply@michaelheilikman.com', 'noreply.michaelheilikman');
+               $mail->setFrom('no_reply@cgmr.fr', 'noreply.cgmr');
                $mail->addAddress(''.$recup_mail.'', ''.strtoupper($prenom[0]->prenom).' '.strtoupper($prenom[0]->nom).'');     // Add a recipient
                // $mail->addAddress('claire.benes@ifip.asso.fr', 'Claire Benes');     // Add a recipient
                // $mail->addAddress('ellen@example.com');               // Name is optional
@@ -102,10 +102,10 @@ if(isset($_POST['recup_submit'],$_POST['recup_mail'])) {
                         <td width="20"></td>
                         <td>
                               <h2>Hi '.strtoupper($prenom[0]->prenom).'! 🖐</h2>
-                              <p>Your recovery code to copy and paste into the dedicated field at the step 2 of 3: </p>
+                              <p>Votre code de récupération à copier et coller dans le champ dédié de l\'étape 2 / 3 : </p>
                               <p style="font-size:30px;margin-top:20px;margin-bottom:20px;">'.$recup_code.'</p>
-                              <p>If you have lost the password recovery page, you can <a href="'.$liveURL.'/recuperation.php?section=code&a='.$recup_mail.'">click here</a> and go back to the step 2 of 3. You just need to paste your recovery code into the field dedicated for this purpose.</p>
-                              <p>Thank you and see you soon at <a href="'.$liveURL.'">'.$liveURL.'</a> !</p>
+                              <p>Si vous avez perdu la page de récupération du mot de passe, vous pouvez <a href="'.$liveURL.'/recuperation.php?section=code&a='.$recup_mail.'">cliquez-ici</a> et retourner à l\'étape 2 / 3. Il vous suffira de coller votre code de récupération dans le champ dédié à cet effet.</p>
+                              <p>Merci et à bientôt sur <a href="'.$liveURL.'">'.$liveURL.'</a> !</p>
                               
                         </td>
                         <td width="20"></td>
@@ -121,7 +121,7 @@ if(isset($_POST['recup_submit'],$_POST['recup_mail'])) {
    
                      <tr>
                         <td colspan="3" bgcolor="#000000" color:#ffffff;>
-                           <center color:#ffffff;><a style="font-size:12px;color:#ffffff;" href="'.$liveURL.'">'.$liveURL.'</a> | <a style="font-size:12px;color:#ffffff;" href="mailto:'.$administrator.'">contact us</a></center>
+                           <center color:#ffffff;><a style="font-size:12px;color:#ffffff;" href="'.$liveURL.'">'.$liveURL.'</a> | <a style="font-size:12px;color:#ffffff;" href="mailto:'.$administrator.'">contactez-nous</a></center>
                         </td>
                      </tr>
    
@@ -132,7 +132,7 @@ if(isset($_POST['recup_submit'],$_POST['recup_mail'])) {
                      <tr>
                         <td colspan="3" align="center">
                            <font size="2">
-                           This is an automated email, please do not reply to it.
+                           Ceci est un email automatique, merci de ne pas y répondre.
                            </font>
                         </td>
                      </tr>
@@ -141,7 +141,7 @@ if(isset($_POST['recup_submit'],$_POST['recup_mail'])) {
                </body>
                </html>
                ';
-               $mail->AltBody = 'Please kindly copy and paste the following recovery code: '.$recup_code.'';
+               $mail->AltBody = 'Merci de bien vouloir copier et coller le code de récupération suivant: '.$recup_code.'';
            
                $mail->send();
                //echo 'Gestion Message has been sent';
@@ -149,15 +149,15 @@ if(isset($_POST['recup_submit'],$_POST['recup_mail'])) {
                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
            }
             
-            header('location:recuperation.php?section=code');
+           header('location:recuperation.php?section=code');
          } else {
-            $errorInfo = "<span class='font-weight-bold'>This email address is not registered.</span><br> <small>If you don't think you have an account, please contact the <a href='mailto:".$administrator."?subject=Account creation request for ".$website." website'>administrator</a>, or try again with a different email address.</small>";
+            $errorInfo = "<span class='font-weight-bold'>Cette adresse mail n'est pas enregistrée</span>.<br> <small>Si vous ne pensez pas posséder de compte, veuillez contacter l'<a href='mailto:".$administrateur."?subject=Demande de création de compte pour le site ".$website."'>administrateur</a>, ou réessayez avec une autre adresse mail.</small>";
          }
       } else {
-         $errorDanger = "<span class='font-weight-bold'>The format entered does not correspond to a valid email address!</span>";
+         $errorDanger = "<span class='font-weight-bold'>Le format saisi ne correspond pas à une adresse mail valide !</span>";
       }
    } else {
-      $errorWarning = "<span class='font-weight-bold'>Please enter your email address</span>";
+      $errorWarning = "<span class='font-weight-bold'>Veuillez entrer votre adresse mail</span>";
    }
 }
 if(isset($_POST['verif_submit'],$_POST['verif_code'])) {
@@ -171,10 +171,10 @@ if(isset($_POST['verif_submit'],$_POST['verif_code'])) {
          $up_req->execute(array($_SESSION['recup_mail']));
          header('location:recuperation.php?section=changemdp');
       } else {
-         $errorDanger = "<span class='font-weight-bold'>Invalid recovery code</span>";
+         $errorDanger = "<span class='font-weight-bold'>Code invalide</span>";
       }
    } else {
-      $errorWarning = "<span class='font-weight-bold'>Please enter your confirmation password</span>";
+      $errorWarning = "<span class='font-weight-bold'>Veuillez entrer votre code de confirmation</span>";
    }
 }
 if(isset($_POST['change_submit'])) {
@@ -200,17 +200,17 @@ if(isset($_POST['change_submit'])) {
               $del_req->execute();
               header('location:index.php');
             } else {
-               $errorWarning = "Your passwords do not match.";
+               $errorWarning = "Vos mots de passe ne correspondent pas";
             }
          } else {
-            $errorWarning = "Please fill in all fields.";
+            $errorWarning = "Veuillez remplir tous les champs";
          }
       } else {
-         $errorDanger = "Please verify your email by using the verification code that was sent to you by email.";
+         $errorDanger = "Veuillez valider votre mail grâce au code de vérification qui vous a été envoyé par mail";
       }
 
    } else {
-      $errorWarning = "Please fill in all fields.";
+      $errorWarning = "Veuillez remplir tous les champs";
    }
 }
 ?>
