@@ -31,8 +31,11 @@ $page_type = 'page';
 
 $pageID = $pageID + 1;
 
-$sql="INSERT INTO pages (page_id,from_site, page_type) VALUES ('$pageID','$website','$page_type')";
+$sql="INSERT INTO pages (page_id,from_site, page_type) VALUES (:pageID, :website, :page_type)";
 $query = $PDO->prepare($sql);
+$query->bindParam(':pageID', $pageID, PDO::PARAM_INT);
+$query->bindParam(':website', $website);
+$query->bindParam(':page_type', $page_type);
 $query->execute();
 
 header('location:'.$path.'backoffice/pageSingle.php?page_id='.$pageID);
@@ -96,8 +99,7 @@ header('location:'.$path.'backoffice/pageSingle.php?page_id='.$pageID);
   </div>
   <!-- /#wrapper -->
 
-
-<script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/jquery-ui.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script src="<?php echo $path ?>backoffice/js/jquery.dataTables.min.js"></script>

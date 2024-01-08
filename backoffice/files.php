@@ -14,6 +14,7 @@ $typeOfDoc = "document";
 
 	$id = $_GET["files"];
 	$parent_id = $folder->id;
+	$parent_name = $folder->name;
 
 ?>
 <?php include 'includes/head.php'; ?>
@@ -43,7 +44,7 @@ $typeOfDoc = "document";
 
 		<div class="row p-3" id="sort">
 			<?php
-		        $sql = "SELECT * FROM docs WHERE parent_id = $id AND folderType != ' ' ORDER BY item_order ASC";
+		        $sql = "SELECT * FROM docs WHERE parent_id = $id AND folderType != ' ' AND from_site = '$website' ORDER BY item_order ASC";
 		        $query = $PDO->prepare($sql);
 		        $query->execute();
 		        while($folder = $query->fetch(PDO::FETCH_OBJ)){
@@ -88,7 +89,7 @@ $typeOfDoc = "document";
 
 		<div class="row" id="sortable">
 			<?php	
-				$sql = "SELECT * FROM docs WHERE parent_id = $id AND fileDoc != 'NULL' ORDER BY item_order ASC";
+				$sql = "SELECT * FROM docs WHERE toolDesc LIKE '%{$parent_name}%' AND fileDoc != 'NULL' AND from_site = '$website' ORDER BY item_order ASC";
 				$query = $PDO->prepare($sql);
 				$query->execute();
 				while($folder = $query->fetch(PDO::FETCH_OBJ)){
@@ -174,8 +175,9 @@ $typeOfDoc = "document";
 								file-type="<?php echo $folder->toolType ?>" 
 								file-prod="<?php echo $folder->toolProd ?>" 
 								file-target="<?php echo $folder->toolTarget ?>" 
-								file-link = "<?php echo $folder->imgBase64 ?>" 
-								file-file="<?php echo $folder->fileDoc ?>" 
+								file-link="<?php echo $folder->toolLink ?>" 
+								file-img = "<?php echo $folder->imgBase64 ?>" 
+								file-file="<?php echo $folder->fileDoc ?>"  
 								<?php
 									$parents = $folder->toolDesc;
 									$parents = str_replace(' ','',$parents);

@@ -159,24 +159,22 @@ $('#submitFormBlog').on('click',function(e){
     }, 1500);
 });
 
-$(function () {
-    if($("#page_title").length){
-        var countTitle = $('#page_title').val().length;
-        //console.log(countTitle)
-        if(countTitle < 45){
-            $('#page_title').css("height","60px")
-        }else if(countTitle > 46 && countTitle < 99){
-            $('#page_title').css("height","100px")
-        }else if(countTitle >= 100){
-            $('#page_title').css("height","140px")
-        }
+$(document).ready(function () {
+    var textarea = $('#page_title');
 
-        $('#page_title').on('input', function () { 
-    
-            this.style.height = (this.scrollHeight) + 'px'; 
-        });
+    // Appeler la fonction de redimensionnement initiale
+    autoResizeTextarea();
+
+    // Attacher un gestionnaire d'événements à l'entrée de texte pour redimensionner le textarea
+    textarea.on('input', autoResizeTextarea);
+
+    function autoResizeTextarea() {
+        // Réinitialiser la hauteur à 0 pour obtenir la hauteur de la totalité du contenu
+        textarea.height(0);
+        
+        // Ajuster la hauteur du textarea en fonction du contenu et ajouter un peu de marge
+        textarea.height(textarea[0].scrollHeight + 10);
     }
-
 });
 
 $(function(){

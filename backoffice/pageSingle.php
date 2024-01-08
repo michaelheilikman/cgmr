@@ -11,18 +11,18 @@ $parent_id = 1;
 
 <?php
     
-    $id = $_GET['page_id'];
+    $id = (int)$_GET['page_id'];
     $sql = "SELECT * FROM pages WHERE page_id = $id";
     $query = $PDO->prepare($sql);
     $query->execute();
     $data = $query->fetch(PDO::FETCH_OBJ);
-    $photo = substr($data->photo,0,-4);
+    @$photo = substr($data->photo,0,-4);
 
     date_default_timezone_set('Europe/Paris');
     $maintenant = new DateTime();
     $today = $maintenant->format('Y-m-d H:i:s');
 
-    $pageCat = $data->page_category;
+    @$pageCat = $data->page_category;
     
     
 
@@ -47,20 +47,23 @@ $parent_id = 1;
 
         <form action="" method="POST" enctype="multipart/form-data" class="d-flex col-12 col-md-12 blogEditor px-0" id="submissionForm">
 
-            <input type="hidden" name="page_id" value="<?php echo $data->page_id ?>" id="page_id">
+            <input type="hidden" name="page_id" value="<?php echo $id ?>" id="page_id">
 
             <main class="col-12 col-md-9 blogEditorMain">
               <section class="p-5">
 
               <div class="form-group">
-                <textarea name="titre" class="form-control" id="page_title" placeholder="Titre de la page"><?php echo $data->titre ?></textarea>
+                <textarea name="titre" class="form-control" id="page_title" placeholder="Titre de la page"><?php echo @$data->titre ?></textarea>
 
                 <div id="pageTools" class="sortable">
                   <?php
 
-                      $sql = "SELECT * FROM page_tools WHERE from_site='$website' AND page_id = $id  ORDER BY item_order ASC";
+                      $sql = "SELECT * FROM page_tools WHERE from_site = :website AND page_id = :page_id ORDER BY item_order ASC";
                       $query = $PDO->prepare($sql);
+                      $query->bindParam(':website', $website);
+                      $query->bindParam(':page_id', $id, PDO::PARAM_INT);
                       $query->execute();
+
                       while($tool = $query->fetch(PDO::FETCH_OBJ)):
 
                           if($tool->tool_type == 'simpleText'){
@@ -72,7 +75,8 @@ $parent_id = 1;
                               </div>
                               </div>';
                           }elseif($tool->tool_type == 'simpleImage'){ 
-                            $picture = substr($tool->tool_content,0,-4);
+                            if(isset($tool->tool_content))
+                              $picture = substr($tool->tool_content,0,-4);
                             ?>
                               <?php if(!empty($tool->tool_content) ): ?>
                                 <div class="col-12 my-3 toolPicture" id="<?php echo $tool->tool_id ?>">
@@ -126,14 +130,16 @@ $parent_id = 1;
                   </div>
                 </div>
 
-                <?php 
+                <?php
+                if(isset($images)):
                   $images = $data->photo;
                   $image = explode('; ',$images);
                   $countImg = count($image);
+                endif
                 ?>
                 <div class="cardHead">
                   <h3 class="h6 mb-0 py-4 px-4 font-weight-bold" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  <span class="h4 mr-2" style="position:relative;top:3px;"><i class="bi bi-image-fill"></i></span> Image mise en avant <?php if(!empty($images)): ?> <i class="bi bi-check-circle-fill text-info ml-2"></i><?php else: ?><i class="bi bi-exclamation-diamond-fill text-orange ml-2"></i><?php endif ?>
+                  <span class="h4 mr-2" style="position:relative;top:3px;"><i class="bi bi-image-fill"></i></span> Image mise en avant <?php if(!empty($data->photo)): ?> <i class="bi bi-check-circle-fill text-success ml-2"></i><?php else: ?><i class="bi bi-exclamation-diamond-fill text-orange ml-2"></i><?php endif ?>
                   </h3>
                 </div>
 
@@ -153,14 +159,16 @@ $parent_id = 1;
                   </div>
                 </div>
 
-                <?php 
+                <?php
+                if(isset($categories)):
                   $categories = $data->page_category;
                   $categorie = explode('; ',$categories);
                   $countCat = count($categorie);
+                endif
                 ?>
                 <div class="cardHead">
                   <h3 class="h6 mb-0 py-4 px-4 font-weight-bold" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    <span class="h4 mr-2" style="position:relative;top:3px;"><i class="bi bi-bookmarks-fill"></i></span> Catégories <?php if(!empty($categories)): ?> <i class="bi bi-check-circle-fill text-info ml-2"></i><?php else: ?><i class="bi bi-exclamation-diamond-fill text-orange ml-2"></i><?php endif ?>
+                    <span class="h4 mr-2" style="position:relative;top:3px;"><i class="bi bi-bookmarks-fill"></i></span> Catégories <?php if(!empty($data->page_category)): ?> <i class="bi bi-check-circle-fill text-success ml-2"></i><?php else: ?><i class="bi bi-exclamation-diamond-fill text-orange ml-2"></i><?php endif ?>
                   </h3>
                 </div>
 
@@ -194,15 +202,17 @@ $parent_id = 1;
                   </div>
                 </div>
 
-                <?php 
+                <?php
+                if(isset($docs)):
                   $docs = $data->embededFiles;
                   $doc = explode('; ',$docs);
                   $countDocs = count($doc);
+                endif
                   ?>
 
                   <div class="cardHead">
                     <h3 class="h6 mb-0 py-4 px-4 font-weight-bold" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                      <span class="h4 mr-2" style="position:relative;top:5px;"><ion-icon name="folder"></ion-icon></span> Document<?php if($countDocs >=2){echo "s";}?> attaché<?php if($countDocs >=2){echo "s";}?> <?php if(!empty($docs)): ?> <span class="badge badge-danger ml-2"><?php echo $countDocs ?></span><?php else: ?><span class="badge badge-danger ml-2">0</span><?php endif ?>
+                      <span class="h4 mr-2" style="position:relative;top:5px;"><ion-icon name="folder"></ion-icon></span> Document<?php if(isset($countDocs) && $countDocs >=2){echo "s";}?> attaché<?php if(isset($countDocs) && $countDocs >=2){echo "s";}?> <?php if(!empty($docs)): ?> <span class="badge badge-danger ml-2"><?php echo $countDocs ?></span><?php else: ?><span class="badge badge-danger ml-2">0</span><?php endif ?>
                     </h3>
                   </div>
 

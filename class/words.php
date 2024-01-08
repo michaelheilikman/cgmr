@@ -34,10 +34,19 @@ function between_last ($thisObj, $that, $inthat)
 // use strrevpos function in case your php version does not include it
 function strrevpos($instr, $needle)
 {
-    $rev_pos = strpos (strrev($instr), strrev($needle));
-    if ($rev_pos===false) return false;
-    else return strlen($instr) - $rev_pos - strlen($needle);
-};
+    // Vérifiez si $instr est défini avant d'utiliser strrev
+    if (isset($instr)) {
+        $rev_pos = strpos(strrev($instr), strrev($needle));
+        if ($rev_pos === false) {
+            return false;
+        } else {
+            return strlen($instr) - $rev_pos - strlen($needle);
+        }
+    } else {
+        // Traitement si $instr n'est pas défini
+        return false; // ou une autre valeur par défaut que vous souhaitez utiliser
+    }
+}
 
 
 function reduire($article, $nb_car, $delim='...') {

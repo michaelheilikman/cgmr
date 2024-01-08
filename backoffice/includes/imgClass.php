@@ -22,7 +22,14 @@ class Img{
 		if($dimension[0]<($mlargeur/$mhauteur)*$dimension[1]){ $dimX=$mlargeur; $dimY=$mlargeur*$dimension[1]/$dimension[0]; $decalY=-($dimY-$mhauteur)/2; $decalX=0;}
 		if($dimension[0]==($mlargeur/$mhauteur)*$dimension[1]){ $dimX=$mlargeur; $dimY=$mhauteur; $decalX=0; $decalY=0;}
 		// on modifie l'image crée en y plaçant la grande image redimensionné et décalée
-		imagecopyresampled($miniature,$image,$decalX,$decalY,0,0,$dimX,$dimY,$dimension[0],$dimension[1]);
+			// Convertir les valeurs à virgule flottante en entiers de manière explicite
+			$decalXInt = (int)$decalX;
+			$decalYInt = (int)$decalY;
+			$dimXInt = (int)$dimX;
+			$dimYInt = (int)$dimY;
+			$dimension0Int = (int)$dimension[0];
+			$dimension1Int = (int)$dimension[1];
+		imagecopyresampled($miniature,$image,$decalXInt,$decalYInt,0,0,$dimXInt,$dimYInt,$dimension0Int,$dimension1Int);
 		// On sauvegarde le tout
 		imagejpeg($miniature,$chemin."/".$nom.".jpg",90);
 		return true;

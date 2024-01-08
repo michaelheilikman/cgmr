@@ -13,7 +13,7 @@ move_uploaded_file($file_loc,$folderfile.$file);
 
 @$name = addslashes($_POST["name"]);
 @$tool = $_POST['toolDesc'];
-@$toolDesc = implode('; ', [$tool]);
+@$toolDesc = implode('; ', $tool);
 @$toolDesc = addslashes($toolDesc);
 @$toolProd = addslashes($_POST["toolProd"]);
 @$toolType = addslashes($_POST["toolType"]);
@@ -55,71 +55,53 @@ $query->execute();
           <label>Date du document</label>
   				<input type="text" name="fileDate" class="datetimepicker form-control" placeholder="Date">
         </div>
+        
+        <div class="form-group col-sm-12" style="padding: 0 10px;">
+					<label>Pratiques en production</label><br>
 
-        <!-- <div class="form-group col-sm-12" style="padding: 0 10px;">
-					<label>Espèces</label><br>
-					<div class="form-check form-check-inline">
-						<input class="form-check-input" name="toolDesc[]" type="checkbox" id="porc" value="porc">
-						<label class="form-check-label" for="porc">porc</label>
-					</div>
-          <div class="form-check form-check-inline">
-						<input class="form-check-input" name="toolDesc[]" type="checkbox" id="lapin" value="lapin">
-						<label class="form-check-label" for="lapin">lapin</label>
-					</div>
-          <div class="form-check form-check-inline">
-						<input class="form-check-input" name="toolDesc[]" type="checkbox" id="poisson" value="poisson">
-						<label class="form-check-label" for="poisson">poisson</label>
-					</div>
-          <div class="form-check form-check-inline">
-						<input class="form-check-input" name="toolDesc[]" type="checkbox" id="volaille" value="volaille">
-						<label class="form-check-label" for="volaille">volaille</label>
-					</div>
-          <div class="form-check form-check-inline">
-						<input class="form-check-input" name="toolDesc[]" type="checkbox" id="bovin" value="bovin">
-						<label class="form-check-label" for="bovin">bovin</label>
-					</div>
-          <div class="form-check form-check-inline">
-						<input class="form-check-input" name="toolDesc[]" type="checkbox" id="ovin" value="ovin">
-						<label class="form-check-label" for="ovin">ovin</label>
-					</div>
-          <div class="form-check form-check-inline">
-						<input class="form-check-input" name="toolDesc[]" type="checkbox" id="caprin" value="caprin">
-						<label class="form-check-label" for="caprin">caprin</label>
-					</div>
-          <div class="form-check form-check-inline">
-						<input class="form-check-input" name="toolDesc[]" type="checkbox" id="equin" value="equin">
-						<label class="form-check-label" for="equin">equin</label>
-					</div>
-          <div class="form-check form-check-inline">
-						<input class="form-check-input" name="toolDesc[]" type="checkbox" id="multi-filieres" value="multi-filieres">
-						<label class="form-check-label" for="multi-filieres">multi-filieres</label>
-					</div>
+          <?php
+          $sql = "SELECT name FROM docs WHERE parent_id = 0 AND from_site = '$website' ORDER BY toolDesc DESC";
+          $query = $PDO->prepare($sql);
+          $query->execute();
+          while($data = $query->fetch(PDO::FETCH_OBJ)):
+          ?>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" name="toolDesc[]" type="checkbox" id="<?= $data->name ?>" value="<?= $data->name ?>" <?php if($data->name == $parent_name){echo 'checked';}?>>
+              <label class="form-check-label" for="<?= $data->name ?>"><?= $data->name ?></label>
+            </div>
+
+          <?php endwhile; ?>
         </div>
 
         <div class="form-group col-12" style="padding: 0 10px">
          <label>Mot clé 1</label><br>
          <select name="toolType" class="form-control">
+          <option value="NULL">Choisissez un mot clé</option>
           <?php include 'includes/keyword.php'; ?>
          </select>
         </div>
         <div class="form-group col-12" style="padding: 0 10px">
          <label>Mot clé 2</label><br>
          <select name="toolProd" class="form-control">
+          <option value="NULL">Choisissez un mot clé</option>
           <?php include 'includes/keyword.php'; ?>
          </select>
         </div>
         <div class="form-group col-12" style="padding: 0 10px">
          <label>Mot clé 3</label><br>
          <select name="toolTarget" class="form-control">
+          <option value="NULL">Choisissez un mot clé</option>
           <?php include 'includes/keyword.php'; ?>
          </select>
         </div>
         <div class="form-group col-12" style="padding: 0 10px">
          <label>Mot clé 4</label><br>
          <select name="toolLink" class="form-control">
+          <option value="NULL">Choisissez un mot clé</option>
           <?php include 'includes/keyword.php'; ?>
          </select>
-        </div> -->
+        </div>
 
         <div class="form-group col-12 fileIt" style="padding: 0 10px">
           <label for="file-to-upload">Ajouter la fiche</label><br>

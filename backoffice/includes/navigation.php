@@ -55,16 +55,10 @@
   <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
   <?php if($Auth->user('role') == 'admin' OR $Auth->user('role') =='superAdmin'): ?>
     
-    <?php if(@$page == 'docs' || @$page == 'biblio' || @$page == 'colloque' AND $subPage != 'keywords'){ ?>
-      <li class="nav-item">
-			  <a href="#" class="mr-3 btn btn-success" data-toggle="modal" data-target="#new-folder"><i class="bi bi-folder-fill text-white mr-1"></i> Nouveau dossier</a>
-      </li>
-  <?php } elseif($page == 'docs' && $subPage == 'keywords'){?>
-      <li class="nav-item">
-			  <a href="#" class="mr-3 btn btn-success" data-toggle="modal" data-target="#new-key">
-        <span class="spinner-border-sm saveActive" style="position:relative;top:-3px;" role="status" aria-hidden="true"></span>
-        <i class="bi bi-key-fill text-white mr-1"></i> Nouveau mot-clé</a>
-      </li>
+  <?php if(@$page == 'docs' || @$page == 'biblio' || @$page == 'colloque'){ ?>
+    <li class="nav-item">
+			<a href="#" class="mr-3 btn btn-success" data-toggle="modal" data-target="#new-folder"><i class="bi bi-folder-fill text-white mr-1"></i> Nouveau dossier</a>
+    </li>
   <?php } elseif($page == 'contact' && $typeOfDoc == 'contact' && $subPage == 'all'){?>
     <li class="nav-item">
       <a href="user.php" class="mr-3 btn btn-success" style="position: relative;top:2px;"><i class="bi bi-person-circle text-white mr-1"></i> Nouvel utilisateur</a>

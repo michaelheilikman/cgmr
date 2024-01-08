@@ -4,6 +4,8 @@ $(function(){
         var page_id = $("#tools_page_id").val();
         var website = $("#tools_website").val();
         var type = $(this).attr('data-type');
+
+        console.log(page_id,website)
         
         $.ajax({
             type    : "POST",
