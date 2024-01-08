@@ -26,7 +26,7 @@ if(!empty($_POST['website'])){
         CURLOPT_TIMEOUT => 30,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => "{\"attributes\":{\"PRENOM\":\"$news_prenom\",\"NOM\":\"$news_nom\"},\"listIds\":[4],\"updateEnabled\":true,\"email\":\"$news_mail\"}",
+        CURLOPT_POSTFIELDS => "{\"attributes\":{\"PRENOM\":\"$news_prenom\",\"NOM\":\"$news_nom\"},\"listIds\":[7],\"updateEnabled\":true,\"email\":\"$news_mail\"}",
         CURLOPT_HTTPHEADER => [
             "accept: application/json",
             "api-key:".$_ENV['BREVO_API_KEY']."",

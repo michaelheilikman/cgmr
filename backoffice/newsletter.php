@@ -8,7 +8,7 @@ $Auth->allow('users');
 $typeOfDoc = "contact";
 $curl = curl_init();
 curl_setopt_array($curl, [
-CURLOPT_URL => "https://api.sendinblue.com/v3/contacts/lists/4/contacts?limit=50&offset=0&sort=desc",
+CURLOPT_URL => "https://api.sendinblue.com/v3/contacts/lists/7/contacts?limit=50&offset=0&sort=desc",
 CURLOPT_RETURNTRANSFER => true,
 CURLOPT_ENCODING => "",
 CURLOPT_MAXREDIRS => 10,
