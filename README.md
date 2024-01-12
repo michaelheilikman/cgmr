@@ -9,7 +9,7 @@
 4. [Environnement](#environnement)
 
 
-### Informations Générales
+### Informations Generales
 ***
 Ce site est réalisé en PHP / SCSS / JS sans framework spécifique.
 
