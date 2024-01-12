@@ -1,0 +1,25 @@
+@import "_resetbs";
+@import "../../node_modules/bootstrap/scss/bootstrap";
+@import "https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap";
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.image-actions {
+    display: none;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.image-container:hover .image-actions {
+    display: block;
+}
+
+.edit-btn, .delete-btn {
+    margin: 5px;
+    /* Ajoutez plus de styles selon vos besoins */
+}

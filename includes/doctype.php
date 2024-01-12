@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-5ZV6V8V');</script>
-    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -56,9 +49,9 @@
 		<?php else: ?>
 			<meta property="og:locale" content="fr_FR" />
 			<meta property="og:type" content="article" />
-			<meta property="og:title" content="Michael Heilikman | <?php echo $page ?>" />
+			<meta property="og:title" content="CGMR | <?php echo $page ?>" />
 			<meta property="og:url" content="<?php echo $path.''.$_SERVER['REQUEST_URI'] ?>" />
-			<meta property="og:description" content="I am a Full Stack developer with a passion for web technologies and innovation, specializing in PHP, UX & UI design, and project management."/>
+			<meta property="og:description" content="Chez C.G.M.R, nous sommes spécialiste depuis plus de 25 ans dans le Carrelage. Granite. Marbre. Rénovation. Grâce à notre savoir-faire nous avons su fidélisé nos clients qui nous font confiance."/>
 			<meta property="og:image" content="<?php echo $path.'img/'.$logo ?>" />
 			<meta property="og:image:width" content="800"/>
 			<meta property="og:image:height" content="414"/>

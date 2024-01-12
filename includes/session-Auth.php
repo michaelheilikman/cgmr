@@ -1,7 +1,7 @@
 <?php
 session_start();
-include 'class/bdd_connect.php';
-require "class/class.auth.php";
+require __DIR__ .'/../class/bdd_connect.php';
+require __DIR__ .'/../class/class.auth.php';
 if(!empty($_POST['password']) AND !empty($_POST['mail'])){
     if($Auth->login($_POST) && $Auth->user('password') != $Auth->user('passwordCheck') ){
         if($Auth->user('role') == 'superAdmin' || $Auth->user('role') == 'admin' || $Auth->user('role') == 'autre'){

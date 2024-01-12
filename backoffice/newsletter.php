@@ -91,7 +91,7 @@ curl_close($curl);
               <th class="text-light">ID Brevo</th>
               <th class="text-light">Nom</th>
               <th class="text-light">E-mail</th>
-              <th class="text-light">Entreprise</th>
+              <th class="text-light">Téléphone</th>
               <th class="text-light">Date d'inscription</th>
           </thead>
           <tbody>
@@ -111,7 +111,7 @@ curl_close($curl);
                   <a class="text-primary mb-0 pb-0" href="mailto:'.$jsondec->contacts[$i]->email.'">'.$jsondec->contacts[$i]->email.'</a>
               </td>
               <td style="line-height:20px">
-                  <p class="text-dark mb-0 pb-0">'.$jsondec->contacts[$i]->attributes->SOCIETE.'</p>
+                  <p class="text-dark mb-0 pb-0">+'.$jsondec->contacts[$i]->attributes->SMS.'</p>
               </td>
               <td style="line-height:20px">
               <p class="text-dark mb-0 pb-0">'.date_format(date_create($jsondec->contacts[$i]->modifiedAt), "Y-m-d H:i:s").'</p>
@@ -127,7 +127,7 @@ curl_close($curl);
               <td class="text-light">ID Brevo</td>
               <td class="text-light">Nom</td>
               <td class="text-light">E-mail</td>
-              <td class="text-light">Entreprise</td>
+              <td class="text-light">Téléphone</td>
               <td class="text-light">Date d'inscription</td>
           </tfoot>
       </table>
