@@ -24,9 +24,13 @@ A list of technologies used within the project:
 L'installation se fait très simplement en faisant un clone des fichiers ou en cliquant sur download. 
 ```
 $ git clone https://github.com/michaelheilikman/cgmr.git
+```
+```
 npm install jquery
 npm install bootstrap
 npm i jquery-ui
+```
+```
 composer require phpmailer/phpmailer
 ```
 
