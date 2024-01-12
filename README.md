@@ -2,14 +2,13 @@
 <img src="https://cgmr.fr/img/ebeniste.png" width="300" alt="Image text">
 
 ## Table des matières :
-1. [General Info](#general-info)
+1. [Informations Générales](#general-info)
 2. [Technologies](#technologies)
 3. [Installation](#installation)
 4. [Environnement](#environnement)
-5. [FAQs](#faqs)
 
 
-### General Info
+### Informations Générales
 ***
 Ce site est réalisé en PHP / SCSS / JS sans framework spécifique.
 
@@ -25,8 +24,11 @@ A list of technologies used within the project:
 L'installation se fait très simplement en faisant un clone des fichiers ou en cliquant sur download. 
 ```
 $ git clone https://github.com/michaelheilikman/cgmr.git
+npm install jquery
+npm install bootstrap
+npm i jquery-ui
+composer require phpmailer/phpmailer
 ```
-Attention : la base de données ```n'est pas fournie``` avec le code.
 
 ### Environnement
 ***
@@ -60,168 +62,328 @@ $database = $_ENV['DB_NAME'];
 ```
 #### la base de données
 ```
-+------------------------+          +------------------------+          +------------------------+
-|        actions         |          |          blog          |          |        category        |
-+------------------------+          +------------------------+          +------------------------+
-| id                     |<-------->| id                     |          | cat_id                 |
-| from_site              |          | from_site              |          | from_site              |
-| action                 |          | title                  |          | cat_name               |
-| dateAction             |          | url                    |          | cat_date               |
-+------------------------+          | description            |          +------------------------+
-                                   | eventStart              |
-                                   | eventEnd                |
-                                   | embededFiles            |
-                                   | authors                |
-                                   | photo                  |
-                                   | blogDate                |
-                                   | creator                |
-                                   +------------------------+
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Version du serveur : 5.7.36
+-- Version de PHP : 8.1.0
 
-+------------------------+          +------------------------+          +------------------------+
-|       chatbox          |          |          docs          |          |      entreprises      |
-+------------------------+          +------------------------+          +------------------------+
-| id                     |<-------->| id                     |          | id                     |
-| author                 |          | name                   |          | from_site              |
-| texte                  |          | toolDesc               |          | entreprise             |
-| date                   |          | toolProd               |          | gouvernance            |
-| doc_id                 |          | toolType               |          | adresse                |
-+------------------------+          | toolTarget             |          | cp                     |
-                                   | toolLink               |          | ville                  |
-                                   | imgBase64              |          | num_TVA                |
-                                   | folderType             |          | dateDebut              |
-                                   | fileDate               |          +------------------------+
-                                   | fileDoc                |
-                                   | typeDoc                |
-                                   | sizeDoc                |
-                                   | date                   |
-                                   | fileUpdate             |
-                                   | created_by             |
-                                   | active                 |
-                                   | parent_id              |
-                                   | item_order             |
-                                   +------------------------+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
-+------------------------+          +------------------------+          +------------------------+
-|        events          |          |        keywords        |          |      newsletter       |
-+------------------------+          +------------------------+          +------------------------+
-| id                     |          | key_id                 |          | id                     |
-| eventDate              |          | from_site              |          | from_site              |
-| eventTexte             |          | key_name               |          | news_prenom            |
-| from_site              |          | key_date               |          | news_nom               |
-| eventTime              |          +------------------------+          | news_mail              |
-| eventTimeEnd           |                                              | news_date              |
-+------------------------+                                              +------------------------+
+--
+-- Base de données : `Nom de votre base`
+--
 
-+------------------------+          +------------------------+          +------------------------+
-|       online           |          |         pages          |          |      page_tools       |
-+------------------------+          +------------------------+          +------------------------+
-| visitor_id             |<-------->| page_id                |          | tool_id                |
-| from_site              |          | from_site              |          | from_site              |
-| visitor_ip             |          | page_type              |          | tool_type              |
-| country                |          | page_category          |<-------->| tool_content           |
-| countryCode            |          | titre                  |          | page_id                |
-| city                   |          | page_url               |          | item_order             |
-| latitude               |          | photo                  |<-------->+------------------------+
-| longitude              |          | authors                |
-| pageView               |          | embededFiles           |
-| pageReferer            |          | active                 |
-| time                   |          | page_update            |
-| visitor_date           |          | page_date              |
-+------------------------+          +------------------------+
+-- --------------------------------------------------------
 
-+------------------------+          +------------------------+          +------------------------+
-|     participants       |          |   product_rating       |          |     recuperation      |
-+------------------------+          +------------------------+          +------------------------+
-| pid                    |          | id                     |          | id                     |
-| from_site              |          | from_site              |          | mail                   |
-| civilite               |          | user_id                |          | code                   |
-| prenom                 |<-------->| product_id             |          | confirme               |
-| nom                    |          | rating                 |          +------------------------+
-| entreprise             |          | rating_date            |
-| adresse                |          +------------------------+
-| cp                     |
-| ville                  |
-| telFix                 |
-| email                  |
-| ordinal                |
-| tva                    |
-| adherent               |
-| participation          |
-| cotisation             |
-| soiree                 |
-| paiement               |
-| date_inscription       |
-+------------------------+
+--
+-- Structure de la table `actions`
+--
 
-+------------------------+          +------------------------+          +------------------------+
-|  product_rating        |          |     recuperation       |          |         roles          |
-+------------------------+          +------------------------+          +------------------------+
-| id                     |          | id                     |          | id                     |
-| from_site              |          | mail                   |          | name                   |
-| user_id                |          | code                   |          | slug                   |
-| product_id             |          | confirme               |          | level                  |
-| rating                 |          +------------------------+          +------------------------+
-| rating_date            |
-+------------------------+
+CREATE TABLE `actions` (
+  `id` int(11) NOT NULL,
+  `from_site` varchar(255) NOT NULL,
+  `action` varchar(255) NOT NULL,
+  `dateAction` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-+------------------------+          +------------------------+          +------------------------+
-|        roles           |          |         users          |          |         views          |
-+------------------------+          +------------------------+          +------------------------+
-| id                     |<-------->| id                     |          | visitor_id             |
-| name                   |          | from_site              |          | from_site              |
-| slug                   |          | prenom                 |<-------->| visitor_ip             |
-| level                  |          | nom                    |          | country                |
-+------------------------+          | fonction               |          | countryCode            |
-                                    | role_projet            |          | city                   |
-                                   | mail                   |          | latitude               |
-                                   | password               |          | longitude              |
-                                   | passwordCheck          |          | pageView               |
-                                   | type                   |          | pageReferer            |
-                                   | entreprise             |          | visitor_date           |
-                                   | gouvernance            |          +------------------------+
-                                   | adresse                |
-                                   | cp                     |
-                                   | ville                  |
-                                   | telFix                 |
-                                   | telMob                 |
-                                   | dateDebut              |
-                                   | active                 |
-                                   | role_id               |
-                                   | entreprise_id          |
-                                   +------------------------+
+-- --------------------------------------------------------
 
-+------------------------+          +------------------------+          +------------------------+
-|         views          |          |       visitors         |          |        newsletter       |
-+------------------------+          +------------------------+          +------------------------+
-| visitor_id             |<-------->| visitor_id             |          | id                     |
-| from_site              |          | from_site              |          | from_site              |
-| visitor_ip             |          | visitor_ip             |          | news_prenom            |
-| country                |          | country                |          | news_nom               |
-| countryCode            |          | countryCode            |          | news_mail              |
-| city                   |          | city                   |          | news_date              |
-| latitude               |          | latitude               |          +------------------------+
-| longitude              |          | longitude              |
-| pageView               |          | pageView               |
-| pageReferer            |          | pageReferer            |
-| visitor_date           |          | visitor_date           |
-+------------------------+          +------------------------+
+--
+-- Structure de la table `blog`
+--
+
+CREATE TABLE `blog` (
+  `id` int(11) NOT NULL,
+  `from_site` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `title` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` longtext COLLATE utf8mb4_unicode_ci,
+  `description` longtext COLLATE utf8mb4_unicode_ci,
+  `eventStart` varchar(65) CHARACTER SET latin1 DEFAULT NULL,
+  `eventEnd` varchar(65) CHARACTER SET latin1 DEFAULT NULL,
+  `embededFiles` longtext CHARACTER SET latin1,
+  `authors` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `photo` longtext CHARACTER SET latin1,
+  `blogDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creator` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `category`
+--
+
+CREATE TABLE `category` (
+  `cat_id` int(11) NOT NULL,
+  `from_site` varchar(60) NOT NULL,
+  `cat_name` mediumtext NOT NULL,
+  `cat_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `chatbox`
+--
+
+CREATE TABLE `chatbox` (
+  `id` int(11) NOT NULL,
+  `author` varchar(255) NOT NULL,
+  `texte` longtext NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `doc_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `docs`
+--
+
+CREATE TABLE `docs` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `toolDesc` longtext,
+  `toolProd` longtext,
+  `toolType` longtext,
+  `toolTarget` longtext,
+  `toolLink` longtext,
+  `imgBase64` longtext,
+  `folderType` varchar(255) DEFAULT NULL,
+  `fileDate` varchar(255) DEFAULT NULL,
+  `fileDoc` varchar(255) DEFAULT NULL,
+  `typeDoc` varchar(100) DEFAULT NULL,
+  `sizeDoc` int(11) DEFAULT NULL,
+  `from_site` varchar(255) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fileUpdate` varchar(255) DEFAULT NULL,
+  `created_by` varchar(255) DEFAULT NULL,
+  `active` int(11) DEFAULT NULL,
+  `parent_id` varchar(255) DEFAULT NULL,
+  `item_order` int(4) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `entreprises`
+--
+
+CREATE TABLE `entreprises` (
+  `id` int(11) NOT NULL,
+  `from_site` varchar(255) NOT NULL,
+  `entreprise` varchar(255) NOT NULL,
+  `gouvernance` varchar(255) DEFAULT NULL,
+  `adresse` varchar(255) NOT NULL,
+  `cp` varchar(10) NOT NULL,
+  `ville` varchar(255) NOT NULL,
+  `num_TVA` varchar(255) DEFAULT NULL,
+  `dateDebut` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `events`
+--
+
+CREATE TABLE `events` (
+  `id` int(11) NOT NULL,
+  `eventDate` varchar(60) NOT NULL,
+  `eventTexte` longtext NOT NULL,
+  `from_site` varchar(255) NOT NULL,
+  `eventTime` varchar(50) NOT NULL,
+  `eventTimeEnd` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `keywords`
+--
+
+CREATE TABLE `keywords` (
+  `key_id` int(11) NOT NULL,
+  `from_site` varchar(60) DEFAULT NULL,
+  `key_name` mediumtext,
+  `key_date` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `newsletter`
+--
+
+CREATE TABLE `newsletter` (
+  `id` int(11) NOT NULL,
+  `from_site` varchar(60) NOT NULL,
+  `news_prenom` varchar(255) DEFAULT NULL,
+  `news_nom` varchar(255) DEFAULT NULL,
+  `news_mail` text,
+  `news_tel` varchar(60) DEFAULT NULL,
+  `news_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `online`
+--
+
+CREATE TABLE `online` (
+  `visitor_id` int(11) NOT NULL,
+  `from_site` varchar(60) NOT NULL,
+  `visitor_ip` varchar(255) NOT NULL,
+  `country` varchar(255) DEFAULT NULL,
+  `countryCode` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `latitude` varchar(255) DEFAULT NULL,
+  `longitude` varchar(255) DEFAULT NULL,
+  `pageView` longtext,
+  `pageReferer` varchar(255) NOT NULL,
+  `time` int(11) NOT NULL,
+  `visitor_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `pages`
+--
+
+CREATE TABLE `pages` (
+  `page_id` int(11) NOT NULL,
+  `from_site` varchar(60) NOT NULL,
+  `page_type` varchar(255) DEFAULT NULL,
+  `page_category` mediumtext,
+  `titre` longtext,
+  `page_url` longtext,
+  `photo` longtext,
+  `authors` varchar(60) DEFAULT NULL,
+  `embededFiles` longtext,
+  `active` int(2) DEFAULT '0',
+  `page_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `page_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `page_tools`
+--
+
+CREATE TABLE `page_tools` (
+  `tool_id` int(11) NOT NULL,
+  `from_site` varchar(60) DEFAULT NULL,
+  `tool_type` varchar(255) DEFAULT NULL,
+  `tool_content` longtext,
+  `page_id` int(11) NOT NULL,
+  `item_order` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `recuperation`
+--
+
+CREATE TABLE `recuperation` (
+  `id` int(11) NOT NULL,
+  `mail` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `code` int(11) NOT NULL,
+  `confirme` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` int(3) NOT NULL,
+  `name` varchar(60) NOT NULL,
+  `slug` varchar(60) NOT NULL,
+  `level` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(5) NOT NULL,
+  `from_site` varchar(255) NOT NULL,
+  `prenom` varchar(255) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `fonction` varchar(255) NOT NULL,
+  `role_projet` varchar(255) NOT NULL,
+  `mail` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `passwordCheck` varchar(255) DEFAULT NULL,
+  `type` varchar(60) NOT NULL,
+  `entreprise` varchar(255) NOT NULL,
+  `gouvernance` varchar(255) DEFAULT NULL,
+  `adresse` varchar(255) DEFAULT NULL,
+  `cp` varchar(10) DEFAULT NULL,
+  `ville` varchar(255) DEFAULT NULL,
+  `telFix` varchar(60) DEFAULT NULL,
+  `telMob` varchar(60) DEFAULT NULL,
+  `dateDebut` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `active` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  `entreprise_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `views`
+--
+
+CREATE TABLE `views` (
+  `visitor_id` int(11) NOT NULL,
+  `from_site` varchar(60) NOT NULL,
+  `visitor_ip` varchar(255) NOT NULL,
+  `country` varchar(255) DEFAULT NULL,
+  `countryCode` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `latitude` float DEFAULT NULL,
+  `longitude` float DEFAULT NULL,
+  `pageView` longtext,
+  `pageReferer` varchar(255) NOT NULL,
+  `visitor_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `visitors`
+--
+
+CREATE TABLE `visitors` (
+  `visitor_id` int(11) NOT NULL,
+  `from_site` varchar(60) NOT NULL,
+  `visitor_ip` varchar(255) NOT NULL,
+  `country` varchar(255) DEFAULT NULL,
+  `countryCode` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `latitude` float DEFAULT NULL,
+  `longitude` float DEFAULT NULL,
+  `pageView` longtext,
+  `pageReferer` varchar(255) NOT NULL,
+  `visitor_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
 
 ```
-
-
-### FAQs
-***
-A list of frequently asked questions
-1. **This is a question in bold**
-Answer of the first question with _italic words_. 
-2. __Second question in bold__ 
-To answer this question we use an unordered list:
-* First point
-* Second Point
-* Third point
-3. **Third question in bold**
-Answer of the third question with *italic words*.
-4. **Fourth question in bold**
-| Headline 1 in the tablehead | Headline 2 in the tablehead | Headline 3 in the tablehead |
-|:--------------|:-------------:|--------------:|
-| text-align left | text-align center | text-align right |
