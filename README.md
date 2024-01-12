@@ -1,5 +1,6 @@
 # cgmr
 <img src="https://cgmr.fr/img/ebeniste.png" width="300" alt="Image text">
+<img src="https://cgmr.fr/img/admin_dashboard.png" width="300" alt="Image text">
 
 ## Table des matières :
 1. [Informations Générales](#informations-generales)
