@@ -1,7 +1,7 @@
 <?php
 include 'includes/session-Auth.php';
 require 'includes/recaptcha.php';
-$captcha = new Recaptcha('6LfZfjopAAAAAMsxhxzWOL3AZMM1xFqilyN-VYZk', '6LfZfjopAAAAAE4RndCTCX75AWLBBKI5-K8us5W1');
+$captcha = new Recaptcha($_ENV['API_SITE'], $_ENV['API_SECRET']);
 $page = 'Accueil';
 ?>
 
