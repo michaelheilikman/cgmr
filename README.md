@@ -2,7 +2,7 @@
 <img src="https://cgmr.fr/img/ebeniste.png" width="300" alt="Image text">
 
 ## Table des matières :
-1. [Informations Générales](#general-info)
+1. [Informations Générales](#informations-generales)
 2. [Technologies](#technologies)
 3. [Installation](#installation)
 4. [Environnement](#environnement)
