@@ -1,4 +1,4 @@
-<footer class="bg-dark text-light">
+<footer class="bg-black text-light">
 	<div class="container py-5">
 		<div class="row justify-content-between align-self-center align-items-center">
 			<div class="col-md-3">

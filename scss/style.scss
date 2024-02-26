@@ -7,6 +7,15 @@
 body{
     overflow-x: hidden;
     font-family: 'Raleway', sans-serif;
+    color:$dark !important;
+}
+
+h1,h2,h3,h4,h5,h6{
+  color:$dark;
+  font-weight: 700;
+}
+h2.slogan{
+  font-weight: 500;
 }
 
 .input-group-text{
@@ -527,4 +536,104 @@ background-color: $red;
 
 .card-hover:hover img {
   transform: scale(1.2); /* Un léger zoom pour un effet visuel supplémentaire */
-} 
+}
+
+/* form starting stylings ------------------------------- */
+.group{ 
+  position:relative; 
+}
+input,select{
+  background: $light;
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:100%;
+  border:none;
+  border-bottom:3px solid #757575;
+}
+input:focus, select:focus, textarea.comments:focus{outline:none;}
+
+/* LABEL ======================================= */
+label.label{
+  color:$secondary; 
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+/* active state */
+input:focus ~ label.label, input:valid ~ label.label 		{
+  top:-20px;
+  font-size:14px;
+  color:lighten($secondary,20%);
+}
+
+/* BOTTOM BARS ================================= */
+.bar 	{ position:relative; display:block; width:100%; }
+.bar:before, .bar:after 	{
+  content:'';
+  height:2px; 
+  width:0;
+  bottom:1px; 
+  position:absolute;
+  background: lighten($secondary,20%);
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%; 
+}
+
+/* active state */
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+  width:50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+  position:absolute;
+  height:45%; 
+  width:100px; 
+  top:25%; 
+  left:0;
+  pointer-events:none;
+  opacity:0.5;
+}
+
+textarea.comments{
+  width: 100%;
+  padding:10px;
+  border: 3px solid lighten($secondary,0%);
+  background: $light;
+}
+
+/* active state */
+input:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+	from { background:lighten($secondary,20%); }
+  to 	{ width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+	from { background:lighten($secondary,20%); }
+  to 	{ width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+	from { background:lighten($secondary,20%);; }
+  to 	{ width:0; background:transparent; }
+}

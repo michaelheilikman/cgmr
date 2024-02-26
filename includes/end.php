@@ -6,16 +6,13 @@
 <script src="<?= $path ?>js/main.js?v=<?= $noCacheFile ?>"></script>
 <script src="<?= $path ?>js/switch.js?v=<?= $noCacheFile ?>"></script>
 
-<?php 
-  if(isset($captcha)){
-    echo $captcha->script(); 
-  }
-?>
-<script type="text/javascript">
-  var onloadCallback = function() {
-    alert("grecaptcha is ready!");
-  };
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+function onSubmit(token) {
+    document.getElementById("contactForm").submit();
+}
 </script>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-H3RPBDY6KH"></script>
 <script>

@@ -101,7 +101,7 @@ if(isset($_POST['recup_submit'],$_POST['recup_mail'])) {
                      <tr>
                         <td width="20"></td>
                         <td>
-                              <h2>Hi '.strtoupper($prenom[0]->prenom).'! 🖐</h2>
+                              <h2>Bonjour '.strtoupper($prenom[0]->prenom).'! 🖐</h2>
                               <p>Votre code de récupération à copier et coller dans le champ dédié de l\'étape 2 / 3 : </p>
                               <p style="font-size:30px;margin-top:20px;margin-bottom:20px;">'.$recup_code.'</p>
                               <p>Si vous avez perdu la page de récupération du mot de passe, vous pouvez <a href="'.$liveURL.'/recuperation.php?section=code&a='.$recup_mail.'">cliquez-ici</a> et retourner à l\'étape 2 / 3. Il vous suffira de coller votre code de récupération dans le champ dédié à cet effet.</p>

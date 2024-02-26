@@ -1,12 +1,10 @@
 <?php
 include 'includes/session-Auth.php';
 require 'includes/recaptcha.php';
-$captcha = new Recaptcha($_ENV['API_SITE'], $_ENV['API_SECRET']);
 $page = 'Accueil';
 ?>
 
 <?php include 'includes/doctype.php' ?>
-<?php include 'form.php' ?> 
 <?php include 'includes/nav.php' ?>
 <?php include 'includes/hero.php' ?>
 
@@ -15,19 +13,17 @@ $page = 'Accueil';
  </div> -->
   
 <div id="apropos" class="container my-5">
-	<div class="row">
+	<div class="d-flex flex-wrap align-self-stretch">
 		
-		<div class="col-lg-6 order-lg-2 my-auto px-4 p-md-5">
-			<div class="lc-block">
-				<div editable="rich">
-					<h2 class="mb-4">Plus de 25 ans d'excellence dans le BTP.</h2>
-					<p>Depuis plus de deux décennies, notre entreprise a été à la pointe de la construction et de la rénovation. Spécialisées dans le carrelage, le marbre, le granite, et bien plus encore, nous avons constamment évolué pour répondre aux besoins changeants de nos clients.</p>
-					<p>Notre savoir-faire de finition A et notre engagement envers la qualité nous ont permis de transformer des espaces ordinaires en environnements extraordinaires. Chaque projet que nous entreprenons est le reflet de notre passion pour le métier, et c'est cette passion qui nous a valu la confiance de nos clients pendant plus de deux décennies.</p>
-					<p>Laissez-nous mettre notre expertise à votre service pour réaliser vos rêves d'aménagement. Avec nous, l'excellence est une tradition, et votre satisfaction est notre priorité.</p>
-				</div>
+		<div class="col-lg-6 order-lg-2 px-5">
+			<div>
+				<h2 class="mb-4">Plus de 25 ans d'excellence dans le BTP.</h2>
+				<p>Depuis plus de deux décennies, notre entreprise a été à la pointe de la construction et de la rénovation. Spécialisées dans le carrelage, le marbre, le granite, et bien plus encore, nous avons constamment évolué pour répondre aux besoins changeants de nos clients.</p>
+				<p>Notre savoir-faire de finition A et notre engagement envers la qualité nous ont permis de transformer des espaces ordinaires en environnements extraordinaires. Chaque projet que nous entreprenons est le reflet de notre passion pour le métier, et c'est cette passion qui nous a valu la confiance de nos clients pendant plus de deux décennies.</p>
+				<p>Laissez-nous mettre notre expertise à votre service pour réaliser vos rêves d'aménagement. Avec nous, l'excellence est une tradition, et votre satisfaction est notre priorité.</p>
 			</div>
 		</div>
-        <div lc-helper="background" class="col-lg-6 order-lg-1" style="min-height: 45vh; background-size: cover; background-position: center; background-image: url('<?= $path ?>img/poutres_chantier_apropos.png');"></div>
+        <div class="col-lg-6 order-lg-1" style="background-size: cover; background-position: center; background-image: url('<?= $path ?>img/poutres_chantier_apropos.png');"></div>
 	</div>
 </div> 
 
@@ -52,7 +48,7 @@ $page = 'Accueil';
 			</div>
 		</div>
 		<div class="col-lg-8">
-			<div class="row row-cols-2 row-cols-md-3 g-5 align-items-center">
+			<div class="row row-cols-2 row-cols-md-4 g-3 align-items-center">
 				<div class="col lc-block">
 					<img class="img-fluid" src="<?= $path ?>img/partenaires/vinci-construction.png" width="128" height="auto" alt="" loading="lazy">
 				</div>
@@ -65,6 +61,8 @@ $page = 'Accueil';
 				<div class="col lc-block">
 					<img class="img-fluid" src="<?= $path ?>img/partenaires/idf.png" width="128" height="auto" alt="" loading="lazy">
 				</div>
+			</div>
+			<div class="row row-cols-2 row-cols-md-5 g-3 align-items-center">
 				<div class="col lc-block">
 					<img class="img-fluid" src="<?= $path ?>img/partenaires/cite_internationale.png" width="128" height="auto" alt="" loading="lazy">
 				</div>
@@ -113,19 +111,21 @@ $page = 'Accueil';
     <div class="container">
         <div class="d-flex flex-column flex-lg-row col-12 align-items-start justify-content-between"  id="aboutus">
 
-            <!-- Onglets en mode responsive -->
-            <div class="d-flex flex-wrap flex-row flex-md-column nav-pills me-3 mb-3 mb-lg-0 col-12 col-md-4 gap-3 gap-md-0" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <h2 class="mb-md-5 fw-bold col-12">À propos de nous</h2>
+            <div class="d-flex flex-wrap flex-row flex-md-column align-self-stretch justify-content-between nav-pills me-3 mb-3 mb-lg-0 col-12 col-md-4 gap-3 gap-md-0" id="v-pills-tab" role="tablist" >
+                
+				<div class="">
+					<h2 class="mb-md-5 fw-bold col-12">À propos de nous</h2>
+				
+                	<a class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">L'entreprise</a>
+                	<a class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Notre équipe</a>
+                	<a class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Où opérons-nous ?</a>
+				</div>
 
-                <a class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">L'entreprise</a>
-                <a class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Notre équipe</a>
-                <a class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Où opérons-nous ?</a>
-
-				<div class="d-none d-md-block mt-md-5 ">
+				<div class="d-none d-md-flex">
 					<!-- Bouton Flèche Gauche -->
-					<button id="prev-tab" class="btn btn-outline-dark"><i class="bi bi-arrow-left"></i></button>
+					<button id="prev-tab" class="btn btn-outline-dark"><i class="bi bi-arrow-left fs-2"></i></button>
 						<!-- Bouton Flèche Droite -->
-					<button id="next-tab" class="btn btn-danger">Suivant <i class="bi bi-arrow-right"></i></button>
+					<button id="next-tab" class="btn btn-danger d-flex align-content-center align-items-center ms-3"><span class="fs-5 pe-3">Suivant</span> <i class="bi bi-arrow-right fs-2"></i></button>
 				</div>
             </div>
 
@@ -203,68 +203,65 @@ $page = 'Accueil';
 			<h2 class="col-10 fw-bold text-center">Contactez-nous</h2>
 			<p class="col-10 col-md-6 text-center">N’hésitez pas à nous contacter pour toute demande d’informations ou pour une demande de devis en remplissant le formulaire ci-contre.</p>
 		</div>
-		<form action="#contactus" method="POST" id="contactForm">
+		<form action="#contactus" method="POST" id="contactForm" class="d-flex flex-wrap justify-content-center">
 
-			<?php
-				if(isset($error_msg))
-				{
-					echo '<div class="form-group col-12 col-md-12">
-						<div class="alert alert-danger">'.$error_msg.'</div>
-					</div>';
-				}
+			<?php if(!empty($statusMsg)){ ?>
+				<p class="status-msg <?php echo $status; ?>"><?php echo $statusMsg; ?></p>
+			<?php } ?>
 
-				if(isset($success_msg))
-				{
-					echo '<div class="form-group col-12 col-md-12">
-						<div class="alert alert-success">'.$success_msg.'</div>
-					</div>';
-				}
+			<div class="row g-5 mt-md-3 col-9">
+				<div class="col-md-6 mb-md-3">
+					<div class="group">      
+						<input type="text" id="prenom" name="prenom" value="<?= !empty($postData['prenom'])?$postData['prenom']:''; ?>" required>
+						<span class="highlight"></span>
+						<span class="bar"></span>
+						<label class="label">Prénom</label>
+					</div>
+				</div>
+				<div class="col-md-6 mb-md-3">
+					<div class="group">      
+						<input type="text" id="nom" name="nom" value="<?= !empty($postData['nom'])?$postData['nom']:''; ?>" required>
+						<span class="highlight"></span>
+						<span class="bar"></span>
+						<label class="label">Nom</label>
+					</div>
+				</div>
+				<div class="col-md-6 mb-md-3">
+					<div class="group">      
+						<input type="email" id="email" name="email" value="<?= !empty($postData['email'])?$postData['email']:''; ?>" required>
+						<span class="highlight"></span>
+						<span class="bar"></span>
+						<label class="label">Adresse email</label>
+					</div>
+				</div>
+				<div class="col-md-6 mb-md-3">
+					<div class="group">      
+						<input type="text" id="tel" name="tel" value="<?= !empty($postData['tel'])?$postData['tel']:''; ?>" required>
+						<span class="highlight"></span>
+						<span class="bar"></span>
+						<label class="label">Téléphone</label>
+					</div>
+				</div>
+				<div class="col-12 mb-md-3">
+					<div class="group">    
+						<label class="labelSelect">Type de demande</label>  
+						<select name="subject">
+							<option value="informations">Informations</option>
+							<option value="devis">Devis</option>
+							<option value="contact">Contact</option>
+						</select>
+						<span class="highlight"></span>
+						<span class="bar"></span>
+					</div>
+				</div>
+				<div class="">
+					<textarea class="comments" class="ps-2" id="commentaire" name="message" style="height: 150px" placeholder="Détails de votre demande"><?= !empty($postData['message'])?$postData['message']:''; ?></textarea>
+				</div>
 
-			?>
-			<div class="row g-4 mt-md-5">
-				<div class="col-md-6 mb-md-3">
-					<div class="form-floating">
-					<input type="text" class="form-control" id="prenom" name="prenom" placeholder="">
-					<label for="prenom">Prénom</label>
-					</div>
-				</div>
-				<div class="col-md-6 mb-md-3">
-					<div class="form-floating">
-					<input type="text" class="form-control" id="nom" name="nom" placeholder="">
-					<label for="nom">Nom</label>
-					</div>
-				</div>
-				<div class="col-md-6 mb-md-3">
-					<div class="form-floating">
-					<input type="email" class="form-control" id="email" name="email" placeholder="">
-					<label for="email">Adresse email</label>
-					</div>
-				</div>
-				<div class="col-md-6 mb-md-3">
-					<div class="form-floating">
-					<input type="text" class="form-control" id="tel" name="tel" placeholder="">
-					<label for="tel">Téléphone</label>
-					</div>
-				</div>
-				<div class="col-md-6 mb-md-3">
-					<div class="form-floating">
-					<select class="form-select" id="floatingSelectGrid" name="subject">
-						<option value="informations">Informations</option>
-						<option value="devis">Devis</option>
-						<option value="contact">Contact</option>
-					</select>
-					<label for="floatingSelectGrid">Type de demande</label>
-					</div>
-				</div>
-				<div class="form-floating">
-					<textarea class="form-control" class="p-2" id="commentaire" name="message" style="height: 100px" placeholder=""></textarea>
-					<label style="left:10px" for="commentaire">Comments</label>
-				</div>
-				<div class="form-group mb-3col-12 mb-md-3">
-					<?php echo $captcha->html(); ?>
-				</div>
-				<div class="form-group col-12">
-                	<button type="submit" class="btn btn-danger btn-block">Envoyer le message</button>
+				<input type="hidden" name="submit_frm" value="1">
+				
+				<div class="col-12 mt-4">
+                	<button class="btn btn-danger btn-block g-recaptcha" data-sitekey="<?= $siteKey  ?>" data-callback='onSubmit' data-action='submit'>Envoyer le message</button>
             	</div>
 			</div>
 		</form>

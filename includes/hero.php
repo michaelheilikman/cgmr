@@ -55,8 +55,8 @@
 
 
 
-<section style="height:85vh" class="d-none d-md-block">
-	<div class="container-fluid px-0 pb-3">
+<section style="height:90vh" class="d-none d-md-block pt-5">
+	<div class="container px-0 pb-3">
 
 		<div class="row g-0">
 
@@ -68,11 +68,11 @@
 				</div>
 			</div>
 
-			<div class="col-md-6 order-md-1" style="padding:5vh 5vw">
+			<div class="col-md-6 order-md-1 pe-5" style="padding:5vh 0">
 
 				<div class="pb-5">
 					<div class="d-none d-md-flex justify-content-between align-items-center align-self-center pb-5">
-						<div class="col-5">
+						<div class="col-6">
 							<img src="<?= $path ?>img/logo.png" alt="" width="100%">
 						</div>
 
