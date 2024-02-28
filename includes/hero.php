@@ -41,7 +41,7 @@
 				</div>
 				<div class="col-6 d-flex flex-wrap">
 					<p class="mb-0 text-light">Date de création</p>
-					<p class="mb-0 text-light">04/02/2000</p>
+					<p class="mb-0 text-light">01/12/1998</p>
 				</div>
 			</section>
 		</aside>
@@ -68,7 +68,7 @@
 				</div>
 			</div>
 
-			<div class="col-md-6 order-md-1 pe-5" style="padding:5vh 0">
+			<div class="col-md-6 order-md-1 pe-5" style="padding:0 0 5vh 0">
 
 				<div class="pb-5">
 					<div class="d-none d-md-flex justify-content-between align-items-center align-self-center pb-5">
@@ -96,9 +96,25 @@
 					</div>
 				</div>
 
-				<div>
-					<a class="btn btn-danger" href="#contactus">Demander un devis</a>
-				</div>
+				<section class="d-flex flex-wrap justify-content-between align-items-start">
+					<div class="d-flex flex-wrap align-items-center col">
+						<a class="btn btn-danger" href="#contactus">Demander un devis</a> <i class="bi bi-arrow-left fs-1 ms-4"></i>
+					</div>
+					<div class="col d-flex flex-wrap justify-content-end">
+						<section class="d-flex flex-wrap flex-column px-4 py-3">
+							<div class="col-12">
+								<p class="mb-0 text-muted fw-semibold">Localisation</p>
+								<p class="mb-0 text-muted fw-semibold">Montrouge, 92120</p>
+							</div>
+							<div class="col-8 mt-3 d-flex flex-wrap">
+								<p class="mb-0 text-muted fw-semibold">Date de création</p>
+								<p class="mb-0 text-muted fw-semibold">01/12/1998</p>
+							</div>
+						</section>
+					</div>
+				</section>
+
+
 			</div>
 
 		</div> <!-- row -->
